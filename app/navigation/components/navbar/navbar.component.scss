@@ -1,0 +1,9 @@
+
+$border-color: #FBFBFB;
+
+.navbar {
+    border-top-width: 1;
+    border-top-color: $border-color;
+    background-color: darken($border-color, 1%);
+    orientation:horizontal;
+}

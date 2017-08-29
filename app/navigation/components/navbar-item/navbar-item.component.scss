@@ -1,0 +1,8 @@
+.menu-item {
+    width: 80;
+    text-align:center;
+    color: darken(#E6E6E6, 2%);
+    &.active {
+        color:#7332D6;
+    }
+}

@@ -1,0 +1,14 @@
+
+.btn {
+    border-radius:50%;
+    width: 60;
+    height: 60;
+    color: #fff;
+    text-align:center;
+    &.success {
+        background-color:#29CD57;
+    }
+    &.danger {
+        background-color: #FF585B;
+    }
+}

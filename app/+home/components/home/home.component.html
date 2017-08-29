@@ -1,0 +1,8 @@
+<GridLayout rows="*, 150" backgroundColor="#fff">
+    <ng-template ngFor let-pet [ngForOf]="pets$ | async" let-i="index">
+        <petfinder-image-preview [pet]="pet"></petfinder-image-preview>
+        <petfinder-pet-selector [pet]="pet"
+            (onLike)="likePet()"
+            (onDislike)="dislikePet()"></petfinder-pet-selector>
+    </ng-template>
+</GridLayout>

@@ -1,0 +1,20 @@
+<GridLayout columns="100, *, 100" rows="auto, *" [row]="row" class="selector">
+    <petfinder-circle-btn [col]="0"
+        (onTap)="onDisliked()"
+        type="danger"
+        icon="thumbs-down"></petfinder-circle-btn>
+    <StackLayout col="1" class="name-container">
+        <Label class="name" [text]="pet.name"></Label>
+        <Label>
+            <FormattedString>
+                <Span [text]="pet.age"></Span>
+                <Span text=" / "></Span>
+                <Span [text]="pet.sex"></Span>
+            </FormattedString>
+        </Label>
+    </StackLayout>
+    <petfinder-circle-btn [col]="2"
+        (onTap)="onLiked()"
+        type="success"
+        icon="thumbs-up"></petfinder-circle-btn>
+</GridLayout>
