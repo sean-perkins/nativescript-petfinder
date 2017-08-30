@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Image } from 'tns-core-modules/ui/image';
+const CarouselItem = require('nativescript-carousel').CarouselItem;
 
 import { Pet } from '../../../common/models/Pet';
 
@@ -8,19 +10,30 @@ import { Pet } from '../../../common/models/Pet';
     templateUrl: './image-preview.component.html',
     styleUrls: ['./image-preview.component.css']
 })
-export class PetImagePreviewComponent {
+export class PetImagePreviewComponent implements AfterViewInit {
 
     @Input() pet: Pet;
 
-    @Input() row = 0;
+    @ViewChild('carousel') carousel: ElementRef;
 
-    get src(): string {
-        if (this.pet) {
-            if (this.pet.photos.length > 0) {
-                return this.pet.photos[0];
-            }
+    ngAfterViewInit() {
+        this.buildCarousel();
+    }
+
+    private buildCarousel(): void {
+        for (let photoUrl of this.pet.photos) {
+            const image = new Image();
+            image.width = 300;
+            image.height = 800;
+            image.src = photoUrl;
+            image.className = 'image';
+
+            const item = new CarouselItem();
+            item.addChild(image);
+
+            this.carousel.nativeElement.addChild(item);
         }
-        return '';
+        this.carousel.nativeElement.refresh();
     }
 
 }

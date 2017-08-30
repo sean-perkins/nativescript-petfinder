@@ -1,8 +1,9 @@
-<GridLayout columns="100, *, 100" rows="auto, *" [row]="row" class="selector">
+<GridLayout columns="100, *, 100" verticalAlignment="bottom" [row]="row" class="selector">
     <petfinder-circle-btn [col]="0"
         (onTap)="onDisliked()"
         type="danger"
-        icon="thumbs-down"></petfinder-circle-btn>
+        icon="redo"></petfinder-circle-btn>
+    <Label col="0" class="label-btn" text="Skip"></Label>
     <StackLayout col="1" class="name-container">
         <Label class="name" [text]="pet.name"></Label>
         <Label>
@@ -16,5 +17,6 @@
     <petfinder-circle-btn [col]="2"
         (onTap)="onLiked()"
         type="success"
-        icon="thumbs-up"></petfinder-circle-btn>
+        icon="heart"></petfinder-circle-btn>
+    <Label col="2" class="label-btn" text="Love"></Label>
 </GridLayout>
