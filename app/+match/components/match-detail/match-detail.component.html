@@ -1,0 +1,39 @@
+<ScrollView #scrollView>
+    <StackLayout class="container">
+        <GridLayout rows="400, *" columns="*">
+            <ng-template ngFor let-pet [ngForOf]="[pet$ | async]" let-i="index">
+                <GridLayout row="0" columns="20, *" id="profile" class="profile"
+                    [class.visible]="initialLoad"
+                    (tap)="disableMask()"
+                    [visibility]="mask ? 'visible' : 'hidden'">
+                    <Label class="mask" colSpan="2"></Label>
+                    <Label colSpan="2" class="pet-name" [text]="pet.name"></Label>
+                    <Label colSpan="2" class="pet-spec">
+                        <FormattedString>
+                            <Span [text]="pet.age"></Span>
+                            <Span text=", "></Span>
+                            <Span [text]="pet.gender"></Span>
+                            <Span text=", "></Span>
+                            <Span [text]="pet.animal"></Span>
+                        </FormattedString>
+                    </Label>
+                    <Label row="0" col="0"
+                        class="pet-status" [ngClass]="pet.status"></Label>
+                    <Label row="0" col="1"
+                        class="pet-status-label" [text]="pet.displayStatus"></Label>
+
+                </GridLayout>
+                <StackLayout row="0">
+                    <Carousel #carousel></Carousel>
+                </StackLayout>
+
+                <Label row="0" class="mask"></Label>
+
+                <StackLayout row="1" class="container-detail">
+                    <Label class="pet-description"
+                        textWrap="true" [text]="pet.description"></Label>
+                </StackLayout>
+            </ng-template>
+        </GridLayout>
+    </StackLayout>
+</ScrollView>

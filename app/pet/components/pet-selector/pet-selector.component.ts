@@ -14,16 +14,15 @@ export class PetSelectorComponent {
 
     @Input() row = 1;
 
-    @Output() onLike: EventEmitter<boolean> = new EventEmitter();
-    @Output() onDislike: EventEmitter<boolean> = new EventEmitter();
+    @Output() onLike: EventEmitter<Pet> = new EventEmitter();
+    @Output() onDislike: EventEmitter<Pet> = new EventEmitter();
 
     onLiked(): void {
-        this.onLike.emit(true);
+        this.onLike.emit(this.pet);
     }
 
     onDisliked(): void {
-        this.onDislike.emit(true);
+        this.onDislike.emit(this.pet);
     }
-
 
 }

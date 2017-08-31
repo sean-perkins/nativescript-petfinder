@@ -50,4 +50,31 @@ export class Pet {
         this.status = options.status || null;
     }
 
+    get hasImage(): boolean {
+        return this.photos && this.photos.length > 0;
+    }
+
+    get gender(): string {
+        switch (this.sex) {
+            case 'M':
+                return 'Male';
+            case 'F':
+                return 'Female';
+            default:
+                return 'N/A';
+        }
+    }
+
+    get displayStatus(): string {
+        switch (this.status) {
+            case 'A':
+                return 'Available';
+        }
+        return null;
+    }
+
+    get lastModifiedAt(): Date {
+        return new Date(this.lastUpdate);
+    }
+
 }

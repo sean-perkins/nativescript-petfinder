@@ -1,0 +1,34 @@
+.thumbnail {
+    border-radius: 50%;
+    width: 50;
+    height: 50;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+.name {
+    vertical-align: middle;
+    padding-bottom: 20;
+    font-weight: bold;
+    font-size:17;
+}
+
+.status {
+    font-size:12;
+    font-style: italic;
+    text-align:right;
+    &.A {
+        color: #7332D6;
+    }
+}
+
+.updated {
+    vertical-align: middle;
+    font-size:12;
+    padding-top: 20;
+}
+
+.detail-arrow {
+    padding: 0 10;
+}

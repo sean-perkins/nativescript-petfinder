@@ -4,8 +4,9 @@ import { Store } from '@ngrx/store';
 import { IAppState, getPets } from '../../../store/app.state';
 
 import { default as petActions } from '../../../store/actions/pet.actions';
+import { default as matchActions } from '../../../store/actions/match.actions';
 
-import { Pet } from '../../../common/models/Pet';
+import { Pet, SavedPet } from '../../../common/models/index';
 import { Observable } from 'rxjs/Observable';
 import { PetImagePreviewComponent } from '../../../pet/components/pet-image-preview/image-preview.component';
 
@@ -30,11 +31,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
     }
 
-    likePet(): void {
+    likePet(pet: Pet): void {
+        const savedPet = new SavedPet(Object.assign({}, pet, {
+            createdAt: Date.now(),
+            updatedAt: Date.now()
+        }));
+        console.log('savedPet', JSON.stringify(savedPet));
+        this.store$.dispatch(new matchActions.AddAction(savedPet));
         this.randomPet();
     }
 
-    dislikePet(): void {
+    dislikePet(pet: Pet): void {
         this.randomPet();
     }
 

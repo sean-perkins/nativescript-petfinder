@@ -8,11 +8,13 @@ export interface IAppState {
     shelters: appStates.ShelterState;
     notifications: appStates.NotificationState;
     pets: appStates.PetState;
+    matches: appStates.MatchState;
 };
 
 const reducers = {
     shelters: appReducers.shelterReducer,
-    pets: appReducers.petReducer
+    pets: appReducers.petReducer,
+    matches: appReducers.matchReducer
 };
 
 export function AppReducer(state: any, action: any) {

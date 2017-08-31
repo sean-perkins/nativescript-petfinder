@@ -1,0 +1,8 @@
+<Label *ngIf="pet.hasImage" col="0" class="thumbnail"
+    [style]="thumbnail"></Label>
+<Label col="1" class="name" [text]="pet.name"></Label>
+<Label col="1" class="updated"
+    [text]="'Matched on ' + (pet.createdAt | date)"></Label>
+<Label col="2" class="status" [ngClass]="pet.status"
+    [text]="pet.displayStatus"></Label>
+<Label col="3" class="detail-arrow" lnr="chevron-right"></Label>

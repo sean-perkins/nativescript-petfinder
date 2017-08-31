@@ -8,6 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class NotificationBubbleComponent {
 
-    @Input() col = 2;
+    @Input() col = 1;
 
 }

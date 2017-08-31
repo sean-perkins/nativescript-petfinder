@@ -1,3 +1,6 @@
-<StackLayout class="top-bar">
+<GridLayout class="top-bar">
     <Label text="petfinder"></Label>
-</StackLayout>
+    <Label class="back-arrow" [visibility]="routerExt.canGoBack() ? 'visible' : 'collapse'"
+        (tap)="navigateBack()"
+        lnr="chevron-left"></Label>
+</GridLayout>

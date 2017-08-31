@@ -50,7 +50,7 @@ export class PetService {
                             }
                         }
 
-                        pet = new Pet({
+                        pet = new Pet(<any>{
                             status: p.status.$t,
                             contact: contact,
                             age: p.age.$t,

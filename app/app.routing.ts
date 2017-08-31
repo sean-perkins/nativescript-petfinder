@@ -5,7 +5,7 @@ import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '', redirectTo: '/matches', pathMatch: 'full' },
     {
         path: 'home',
         loadChildren: './+home/home.module#HomeModule'
@@ -13,6 +13,10 @@ const routes: Routes = [
     {
         path: 'profile',
         loadChildren: './+profile/profile.module#ProfileModule'
+    },
+    {
+        path: 'matches',
+        loadChildren: './+match/match.module#MatchModule'
     }
 ];
 

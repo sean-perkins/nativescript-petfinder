@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterExtensions } from 'nativescript-angular';
 
 @Component({
     selector: 'petfinder-topbar',
@@ -6,4 +7,11 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: './topbar.component.html',
     styleUrls: ['./topbar.component.css']
 })
-export class TopbarComponent { }
+export class TopbarComponent {
+
+    constructor(public routerExt: RouterExtensions) { }
+
+    navigateBack(): void {
+        this.routerExt.back();
+    }
+}
