@@ -48,5 +48,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>tel</string>
+        <string>telprompt</string>
+    </array>
 </dict>
 </plist>

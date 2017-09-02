@@ -9,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class NotificationBubbleComponent {
 
     @Input() col = 1;
-
+    @Input() link = [];
     @Input() count = 0;
 
 }

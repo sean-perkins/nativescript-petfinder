@@ -9,6 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class NavbarItemComponent {
 
     @Input() icon: string;
+    @Input() label: string;
     @Input() col = 0;
 
     @Input() link: string[] = [];

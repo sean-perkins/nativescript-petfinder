@@ -6,10 +6,17 @@ import { IAppState, getMatchDetail } from '../../../store/app.state';
 
 import { default as matchActions } from '../../../store/actions/match.actions';
 
+import { Accuracy } from 'tns-core-modules/ui/enums';
 import { SavedPet } from '../../../common/models/SavedPet';
 import { Observable } from 'rxjs/Observable';
 import { ScrollView } from 'tns-core-modules/ui/scroll-view';
 import { GridLayout } from 'tns-core-modules/ui/layouts/grid-layout';
+import * as dialogs from 'tns-core-modules/ui/dialogs';
+import * as phone from 'nativescript-phone';
+import * as email from 'nativescript-email';
+import * as geolocation from 'nativescript-geolocation';
+import { compose as composeEmail } from 'nativescript-email';
+import { Directions } from 'nativescript-directions';
 
 import { Image } from 'tns-core-modules/ui/image';
 import { Page } from 'tns-core-modules/ui/page';
@@ -64,6 +71,103 @@ export class MatchDetailComponent implements OnInit, AfterContentInit, AfterView
     disableMask(): void {
         this.initialLoad = false;
         this.mask = false;
+    }
+
+    inquire(pet: SavedPet): void {
+        console.log('inquire!');
+        const actions = [];
+        const contact = pet.contact;
+        if (contact.phone) {
+            actions.push(`Call ${contact.phone}`);
+        }
+        if (contact.email) {
+            actions.push('Email')
+        }
+        if (contact.address1) {
+            actions.push('View on Maps');
+        }
+
+        dialogs.action({
+            title: 'Contact Methods',
+            message: 'Select an option',
+            actions: actions,
+            cancelButtonText: 'Cancel'
+        }).then(selectedAction => {
+            if (selectedAction) {
+                if (selectedAction === 'View on Maps') {
+                    geolocation.enableLocationRequest().then(() => {
+                        geolocation.getCurrentLocation({
+                            desiredAccuracy: Accuracy.high,
+                            updateDistance: 0.1,
+                            timeout: 20000
+                        }).then(location => {
+                            const directions = new Directions();
+                            directions.available().then(() => {
+                                directions.navigate({
+                                    from: {
+                                        lat: location.latitude,
+                                        lng: location.longitude
+                                    },
+                                    to: {
+                                        address: `${contact.address1} ${contact.city}, ${contact.state} ${contact.zip}`
+                                    },
+                                    ios: {
+                                        preferGoogleMaps: true,
+
+                                    }
+                                })
+                            }, () => {
+                                dialogs.alert({
+                                    title: 'Error',
+                                    message: 'Error opening maps on your device',
+                                    okButtonText: 'Ok'
+                                });
+                            });
+                        }, () => {
+                            dialogs.alert({
+                                title: 'Error',
+                                message: 'Error accessing your current location.',
+                                okButtonText: 'Ok'
+                            });
+                        });
+                    }, () => {
+                        dialogs.alert({
+                            title: 'Error',
+                            message: 'You must grant access to your location to use this feature.',
+                            okButtonText: 'Ok'
+                        });
+                    });
+                }
+                else if (selectedAction === 'Email') {
+                    email.available().then(() => {
+                        email.compose({
+                            subject: `Inquring about ${pet.name}`,
+                            body: '',
+                            to: [contact.email],
+
+                        }).then(() => {
+                            console.log('finished?');
+                        }, () => {
+                            dialogs.alert({
+                                title: 'Error',
+                                message: 'There was an issue sending the email.',
+                                okButtonText: 'Ok'
+                            });
+                        });
+                    }, () => {
+                        dialogs.alert({
+                            title: 'Error',
+                            message: 'Email is not available',
+                            okButtonText: 'Ok'
+                        });
+                    });
+                }
+                else {
+                    const formattedPhone = contact.phone.replace(/ /g, '').replace(/["'()]/g, '').replace(/-/g, '');
+                    phone.dial(formattedPhone, true);
+                }
+            }
+        });
     }
 
     private handlePageScroll(): void {

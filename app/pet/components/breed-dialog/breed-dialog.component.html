@@ -20,7 +20,8 @@
             <StackLayout row="0">
                 <Label class="list-group"
                 [text]="item.title"></Label>
-                <Label class="list-item"
+                <Label class="list-item" #label [class.active]="breed === selectedBreed"
+                (tap)="animatePress(label, breed)"
                 *ngFor="let breed of item.breeds"
                 [text]="breed"></Label>
             </StackLayout>

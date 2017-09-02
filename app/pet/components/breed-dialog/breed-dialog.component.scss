@@ -27,6 +27,9 @@ SearchBar {
         border-bottom-color: #eee;
         padding: 0 10;
         height: 40;
+        &.active {
+            background-color: #eee;
+        }
     }
 }
 

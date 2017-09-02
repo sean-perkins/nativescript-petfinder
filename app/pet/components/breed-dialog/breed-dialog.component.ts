@@ -14,7 +14,9 @@ import { RadListView, ListViewScrollEventData } from 'nativescript-telerik-ui/li
 })
 export class BreedDialogComponent implements OnInit {
 
-    private alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    private alphabet = ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
+    private animalTypes = ['Dogs', 'Cats', 'Other Animals'];
 
     @ViewChild('breedListView') breedListView: ElementRef;
 
@@ -23,6 +25,8 @@ export class BreedDialogComponent implements OnInit {
     searchPhrase = '';
 
     currentOffset = 0;
+
+    selectedBreed: string;
 
     private debouncer: any;
     private _currentTitle = 'A';
@@ -44,6 +48,7 @@ export class BreedDialogComponent implements OnInit {
 
     ngOnInit() {
         this.items = this.listItems;
+        this.selectedBreed = this.params.context.breed;
         this.listviewScrollListener();
     }
 
@@ -72,6 +77,17 @@ export class BreedDialogComponent implements OnInit {
         }, 400);
     }
 
+    animatePress(element: any, breed: string) {
+        element.animate({
+            backgroundColor: new Color('#eee'),
+            duration: 150
+        }).then(() => {
+            setTimeout(() => {
+                this.params.closeCallback(breed);
+            }, 200);
+        });
+    }
+
     get currentTitle(): string {
         return this._currentTitle;
     }
@@ -89,7 +105,7 @@ export class BreedDialogComponent implements OnInit {
 
     private getFilterOffsetList(): any[] {
         let listItems = [];
-        const breeds = BreedUtils.DOGS;
+        const breeds = this.breedList;
         for (const letter of this.alphabet) {
             let letterBreeds = breeds.filter(res => res.substr(0, 1).toUpperCase() === letter &&
                 res.toLowerCase().indexOf(this.searchPhrase.toLowerCase()) !== -1);
@@ -123,15 +139,27 @@ export class BreedDialogComponent implements OnInit {
 
     private get listItems(): any[] {
         let listItems = [];
-        const breeds = BreedUtils.DOGS;
+        const breeds = this.breedList;
         for (const letter of this.alphabet) {
             let letterBreeds = breeds.filter(res => res.substr(0, 1).toUpperCase() === letter);
             listItems.push({
                 title: letter,
-                breeds: letterBreeds
+                breeds: letter.length === 0 ? [`All ${this.animalTypes[this.params.context.animalType]}`] : letterBreeds
             });
         }
         return listItems;
+    }
+
+    private get breedList(): any[] {
+        switch (this.params.context.animalType) {
+            case 0:
+                return BreedUtils.DOGS;
+            case 1:
+                return BreedUtils.CATS;
+            case 2:
+                return [...BreedUtils.BIRDS, ...BreedUtils.HORSES, ...BreedUtils.PIGS, ...BreedUtils.RABBITS, ...BreedUtils.REPTILES].sort();
+        }
+        return [];
     }
 
 }

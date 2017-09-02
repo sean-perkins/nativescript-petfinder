@@ -1,0 +1,14 @@
+.btn {
+    @extend .black;
+    border-radius: 5;
+    margin-top: 20;
+    padding: 10 0;
+    border-color:#7332D6;
+    border-width: 1;
+    &-primary {
+        @extend .btn;
+        background-color: #7332D6;
+        color: #fff;
+        border-color: transparent;
+    }
+}

@@ -1,7 +1,7 @@
 <GridLayout class="page" [formGroup]="form"
-    rows="50, auto, auto, auto, auto"
+    rows="50, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto"
     columns="50, *">
-    <SegmentedBar [items]="segmentedItems"
+    <SegmentedBar [items]="segmentedItems" class="main"
         colSpan="2"
         selectedIndex="0"
         (selectedIndexChange)="onSegmentedItemChange($event)"></SegmentedBar>
@@ -11,7 +11,7 @@
     <Button row="2" class="btn-location"
         (tap)="useLocation()"
         lnr="location"></Button>
-    <TextField row="2" col="1" class="input-location"
+    <TextField row="2" col="1" class="input-location" [class.error]="submitted && !form.get('location').valid"
         formControlName="location"
         hint="Ex: Atlanta, GA or 30303"></TextField>
     <!-- Breed Selection -->
@@ -22,4 +22,36 @@
         [hint]="breedHintText"></TextField>
     <Button row="4" colSpan="2" class="btn-breed" (tap)="openBreedSelection()"
         lnr="chevron-down"></Button>
+    <!-- Narrow Your Search Results Section -->
+    <Label row="5" colSpan="2" class="form-label bold border-top"
+        text="Narrow Your Search Results (Optional)"></Label>
+    <!-- Age Section -->
+    <Label row="6" colSpan="2" class="form-label"
+        text="Age"></Label>
+    <SegmentedBar [items]="ageSegmentedItems"
+        row="7"
+        colSpan="2"
+        selectedIndex="0"
+        (selectedIndexChange)="onAgeSegmentedItemChange($event)"></SegmentedBar>
+    <!-- Gender Section -->
+    <Label row="8" colSpan="2" class="form-label"
+        text="Gender"></Label>
+    <SegmentedBar [items]="genderSegmentedItems"
+        row="9"
+        colSpan="2"
+        selectedIndex="0"
+        (selectedIndexChange)="onGenderSegmentedItemChange($event)"></SegmentedBar>
+    <!-- Gender Section -->
+    <Label row="10" colSpan="2" class="form-label"
+        text="Size"></Label>
+    <SegmentedBar [items]="sizeSegmentedItems"
+        row="11"
+        colSpan="2"
+        selectedIndex="0"
+        (selectedIndexChange)="onSizeSegmentedItemChange($event)"></SegmentedBar>
+    <!-- Button -->
+    <Button class="btn-primary btn-search" row="12"
+        (tap)="search()"
+        colSpan="2"
+        text="Find Your Pet"></Button>
 </GridLayout>

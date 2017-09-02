@@ -30,7 +30,12 @@ export default class MatchActions {
 
     static GetActionSuccess = class implements Action {
         readonly type = state.ActionTypes.GET_SUCCESS;
-        constructor(public payload: SavedPet[]) { }
+        constructor(public payload: SavedPet[]) {
+            // Order by most recent
+            payload = payload.sort((a: SavedPet, b: SavedPet) => {
+                return b.createdAt - a.createdAt;
+            });
+        }
     }
 
     static GetActionFailed = class implements Action {

@@ -1,8 +1,15 @@
 @import '../../../css/typography';
+@import '../../../css/buttons';
 
 SegmentedBar {
-    margin: 20 20 0 20;
-    selected-background-color:#7332D6;
+    &.main {
+        margin-top: 20;
+        selected-background-color:#7332D6;
+    }
+    margin-left: 20;
+    margin-right: 20;
+    selected-background-color:#444D54;
+    color: #444D54;
 }
 
 .btn {
@@ -22,7 +29,10 @@ SegmentedBar {
         width: 30;
         height: 30;
         horizontal-align: right;
-        color: #fff;
+        color: #444D54;
+    }
+    &-search {
+        margin: 40 20 0 20;
     }
 }
 
@@ -31,17 +41,32 @@ SegmentedBar {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         margin-left: 0;
+        &.error {
+            border-color: #e53935;
+            placeholder-color: #e53935;
+            border-left-width: 0;
+        }
     }
 }
 
 .form {
     &-label {
-        @extend .semi-bold;
+        @extend .black;
         margin-left: 20;
         padding: 10 0;
         text-transform: uppercase;
         color: #444D54;
         font-size: 10;
+        &.bold {
+            @extend .semi-bold;
+        }
+        &.border-top {
+            border-top-width: 1;
+            border-top-color: #eee;
+            padding-top: 20;
+            margin-right: 20;
+            margin-top: 20;
+        }
     }
 }
 

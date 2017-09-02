@@ -44,6 +44,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         }));
         console.log('savedPet', JSON.stringify(savedPet));
         this.store$.dispatch(new matchActions.AddAction(savedPet));
+        this.store$.dispatch(new matchActions.GetAction);
         this.randomPet();
     }
 

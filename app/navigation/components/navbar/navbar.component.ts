@@ -3,6 +3,8 @@ import { Store } from '@ngrx/store';
 import { IAppState, getMatchCount } from '../../../store/app.state';
 import { Observable } from 'rxjs/Observable';
 
+import { default as matchActions } from '../../../store/actions/match.actions';
+
 @Component({
     selector: 'petfinder-navbar',
     moduleId: module.id,
@@ -19,6 +21,7 @@ export class NavbarComponent implements AfterContentInit {
 
     ngAfterContentInit() {
         this.matchCount$ = this.store$.let(getMatchCount);
+        this.store$.dispatch(new matchActions.GetAction);
     }
 
 }

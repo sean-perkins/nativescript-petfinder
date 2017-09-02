@@ -55,7 +55,9 @@
                         <Label class="right" col="2" row="2" text="State"></Label>
                         <Label class="left" col="3" row="2" [text]="pet.contact.state"></Label>
                     </GridLayout>
-                    <Button class="btn" [text]="'Inquire about ' + pet.name"></Button>
+                    <Button class="btn-primary"
+                        (tap)="inquire(pet)"
+                        [text]="'Inquire about ' + pet.name"></Button>
                 </StackLayout>
             </ng-template>
         </GridLayout>
