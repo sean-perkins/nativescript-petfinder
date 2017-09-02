@@ -60,4 +60,21 @@ export default class MatchActions {
         constructor(public payload?: any) { }
     }
 
+    // Refresh Actions
+
+    static RefreshAction = class implements Action {
+        readonly type = state.ActionTypes.REFRESH;
+        payload = null;
+    }
+
+    static RefreshActionSuccess = class implements Action {
+        readonly type = state.ActionTypes.REFRESH_SUCCESS;
+        payload = null;
+    }
+
+    static RefreshActionFailed = class implements Action {
+        readonly type = state.ActionTypes.REFRESH_FAILED;
+        constructor(public payload?: any) { }
+    }
+
 }

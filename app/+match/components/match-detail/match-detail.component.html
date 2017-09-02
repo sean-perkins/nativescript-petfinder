@@ -2,9 +2,9 @@
     <StackLayout class="container">
         <GridLayout rows="400, *" columns="*">
             <ng-template ngFor let-pet [ngForOf]="[pet$ | async]" let-i="index">
-                <GridLayout row="0" columns="20, *" id="profile" class="profile"
+                <GridLayout row="0" columns="20, *" id="profile" class="profile" #overlay
                     [class.visible]="initialLoad"
-                    (tap)="disableMask()"
+                    (tap)="disableMask(overlay)"
                     [visibility]="mask ? 'visible' : 'hidden'">
                     <Label class="mask" colSpan="2"></Label>
                     <Label colSpan="2" class="pet-name" [text]="pet.name"></Label>

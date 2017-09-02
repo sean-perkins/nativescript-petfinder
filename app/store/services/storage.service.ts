@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { of } from 'rxjs/observable/of';
 import { empty } from 'rxjs/observable/empty';
-import { AppCache, SavedPet } from '../../common/models/index';
+import { AppCache, SavedPet, Pet } from '../../common/models/index';
 
 /**
  * Storage Service for saving important persistence data
@@ -41,6 +41,19 @@ export class StorageService {
             if (!cache.hasPet(pet)) {
                 cache.pets.push(pet);
                 this.updateCache(cache);
+            }
+        }
+        return empty();
+    }
+
+    updateMatch(pet: Pet): Observable<any> {
+        if (pet) {
+            const cache = this.cache;
+            if (cache.hasPet(<any>pet)) {
+                const currentMatch = cache.pets[cache.getPetIndex(pet.id)];
+                cache.pets[cache.getPetIndex(pet.id)] = Object.assign({}, currentMatch, pet);
+                this.updateCache(cache);
+                return of(true);
             }
         }
         return empty();

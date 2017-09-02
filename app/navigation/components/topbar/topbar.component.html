@@ -3,4 +3,8 @@
     <Label class="back-arrow" [visibility]="routerExt.canGoBack() ? 'visible' : 'collapse'"
         (tap)="navigateBack()"
         lnr="chevron-left"></Label>
+    <Label class="reload-matches"
+        [visibility]="isMatchesPage ? 'visible' : 'collapse'"
+        (tap)="reloadMatches()"
+        lnr="redo"></Label>
 </GridLayout>

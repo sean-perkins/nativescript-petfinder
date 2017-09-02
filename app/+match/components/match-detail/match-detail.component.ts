@@ -68,9 +68,16 @@ export class MatchDetailComponent implements OnInit, AfterContentInit, AfterView
         return '';
     }
 
-    disableMask(): void {
-        this.initialLoad = false;
-        this.mask = false;
+    disableMask(args?: any): void {
+        if (args) {
+            args.animate({
+                opacity: 0,
+                duration: 400
+            }).then(() => {
+                this.initialLoad = false;
+                this.mask = false;
+            });
+        }
     }
 
     inquire(pet: SavedPet): void {

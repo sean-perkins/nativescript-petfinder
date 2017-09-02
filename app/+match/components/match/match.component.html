@@ -1,6 +1,8 @@
 <RadListView class="matches-list"
     (itemSelected)="viewMatch($event)"
     selectionBehavior="Press"
+    pullToRefresh="true"
+    (pullToRefreshInitiated)="onPullToRefresh($event)"
     [items]="matches$ | async">
         <ng-template let-item="item" let-i="index">
             <GridLayout rows="70" columns="80, *, auto, auto" class="list-item">

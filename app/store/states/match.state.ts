@@ -17,6 +17,9 @@ export class MatchState {
         FIND: `${MatchState.NAMESPACE} Find`,
         FIND_SUCCESS: `${MatchState.NAMESPACE} Find Success`,
         FIND_FAILED: `${MatchState.NAMESPACE} Find Failed`,
+        REFRESH: `${MatchState.NAMESPACE} Refresh`,
+        REFRESH_SUCCESS: `${MatchState.NAMESPACE} Refresh Success`,
+        REFRESH_FAILED: `${MatchState.NAMESPACE} Refresh Failed`
 
     };
 
