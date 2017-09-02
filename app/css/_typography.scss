@@ -1,0 +1,42 @@
+.raleway {
+    font-family: 'Raleway';
+}
+
+.thin {
+    @extend .raleway;
+    font-weight: 300;
+}
+
+.thin-italic {
+    @extend .thin;
+    font-style: italic;
+}
+
+.normal {
+    @extend .raleway;
+    font-weight: 400;
+}
+
+.semi-bold {
+    @extend .raleway;
+    font-weight: 500;
+}
+
+.bold {
+    @extend .raleway;
+    font-weight: 600;
+    &-italic {
+        @extend .bold;
+        font-style: italic;
+    }
+}
+
+.extra-bold {
+    @extend .raleway;
+    font-weight: 700;
+}
+
+.black {
+    @extend .raleway;
+    font-weight: 900;
+}

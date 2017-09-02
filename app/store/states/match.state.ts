@@ -37,6 +37,10 @@ export class MatchState {
         return state$.select(state => state.matches);
     }
 
+    static getMatchCount(state$: Observable<MatchState>) {
+        return state$.select(state => state.matches.length);
+    }
+
     static getMatchDetail(state$: Observable<MatchState>) {
         return state$.select(state => state.matchDetail);
     }
@@ -57,3 +61,4 @@ export class MatchState {
 export const getMatchesLoading: any = compose(MatchState.isLoading, MatchState.state$);
 export const getMatches: any = compose(MatchState.getMatches, MatchState.state$);
 export const getMatchDetail: any = compose(MatchState.getMatchDetail, MatchState.state$);
+export const getMatchCount: any = compose(MatchState.getMatchCount, MatchState.state$);

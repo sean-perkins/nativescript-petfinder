@@ -18,6 +18,7 @@ export class AppComponent {
         private page: Page,
         private store$: Store<IAppState>) {
         page.backgroundSpanUnderStatusBar = true;
+        page.statusBarStyle = 'dark';
         page.actionBarHidden = true;
         page.backgroundColor = new Color('#7332D6');
     }

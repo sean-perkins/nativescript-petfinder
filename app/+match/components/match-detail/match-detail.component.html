@@ -13,8 +13,15 @@
                             <Span [text]="pet.age"></Span>
                             <Span text=", "></Span>
                             <Span [text]="pet.gender"></Span>
+                        </FormattedString>
+                    </Label>
+                    <Label colSpan="2" class="pet-location" *ngIf="pet.contact">
+                        <FormattedString>
+                            <Span [text]="pet.contact.city"></Span>
                             <Span text=", "></Span>
-                            <Span [text]="pet.animal"></Span>
+                            <Span [text]="pet.contact.state"></Span>
+                            <Span text=", "></Span>
+                            <Span [text]="pet.contact.zip"></Span>
                         </FormattedString>
                     </Label>
                     <Label row="0" col="0"
@@ -30,8 +37,25 @@
                 <Label row="0" class="mask"></Label>
 
                 <StackLayout row="1" class="container-detail">
-                    <Label class="pet-description"
-                        textWrap="true" [text]="pet.description"></Label>
+                    <Label class="pet-description" textWrap="true" [text]="pet.description"></Label>
+                    <Label class="info-header" text="INFO"></Label>
+                    <GridLayout columns="*, *, *, *" rows="30, 30, 30" class="info-container">
+                        <Label class="right" col="0" text="Gender"></Label>
+                        <Label class="left" col="1" [text]="pet.gender"></Label>
+                        <Label class="right" col="2" text="Age"></Label>
+                        <Label class="left" col="3" [text]="pet.age"></Label>
+
+                        <Label class="right" col="0" row="1" text="Mixed"></Label>
+                        <Label class="left" col="1" row="1" [text]="pet.mix ? 'Yes' : 'No'"></Label>
+                        <Label class="right" col="2" row="1" text="Animal"></Label>
+                        <Label class="left" col="3" row="1" [text]="pet.animal"></Label>
+
+                        <Label class="right" col="0" row="2" text="City"></Label>
+                        <Label class="left" col="1" row="2" [text]="pet.contact.city"></Label>
+                        <Label class="right" col="2" row="2" text="State"></Label>
+                        <Label class="left" col="3" row="2" [text]="pet.contact.state"></Label>
+                    </GridLayout>
+                    <Button class="btn" [text]="'Inquire about ' + pet.name"></Button>
                 </StackLayout>
             </ng-template>
         </GridLayout>

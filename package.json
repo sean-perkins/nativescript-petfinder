@@ -7,6 +7,9 @@
     "id": "org.nativescript.nativescriptpetfinder",
     "tns-ios": {
       "version": "3.2.0-2017-8-25-1"
+    },
+    "tns-android": {
+      "version": "3.2.0-rc-2017.8.30.1"
     }
   },
   "dependencies": {
@@ -23,16 +26,22 @@
     "@ngrx/store": "^2.2.1",
     "nativescript-angular": "~4.2.0",
     "nativescript-carousel": "^3.1.0",
+    "nativescript-geolocation": "^3.0.1",
     "nativescript-telerik-ui": "^3.0.4",
     "nativescript-theme-core": "~1.0.2",
     "reflect-metadata": "~0.1.8",
     "rxjs": "~5.4.2",
-    "tns-core-modules": "~3.1.0",
+    "tns-core-modules": "3.3.0-2017-8-30-1",
     "zone.js": "~0.8.2"
   },
   "devDependencies": {
+    "babel-traverse": "6.26.0",
+    "babel-types": "6.26.0",
+    "babylon": "6.18.0",
+    "lazy": "1.0.11",
     "nativescript-dev-sass": "^1.3.0",
     "nativescript-dev-typescript": "~0.5.0",
+    "tns-core-modules-widgets": "^3.3.0-2017-8-29-1",
     "typescript": "~2.4.2"
   }
 }

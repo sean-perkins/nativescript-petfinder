@@ -19,3 +19,9 @@ refer to http://docs.nativescript.org/ui/theme.
     text-transform: none;
     line-height: 1;
 }
+
+@import 'css/typography';
+
+.page {
+    background-color: #fff;
+}

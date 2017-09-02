@@ -10,4 +10,6 @@ export class NotificationBubbleComponent {
 
     @Input() col = 1;
 
+    @Input() count = 0;
+
 }

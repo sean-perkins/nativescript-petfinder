@@ -1,0 +1,25 @@
+<GridLayout class="page" [formGroup]="form"
+    rows="50, auto, auto, auto, auto"
+    columns="50, *">
+    <SegmentedBar [items]="segmentedItems"
+        colSpan="2"
+        selectedIndex="0"
+        (selectedIndexChange)="onSegmentedItemChange($event)"></SegmentedBar>
+    <!-- Location -->
+    <Label row="1" colSpan="2" class="form-label"
+        text="Location**"></Label>
+    <Button row="2" class="btn-location"
+        (tap)="useLocation()"
+        lnr="location"></Button>
+    <TextField row="2" col="1" class="input-location"
+        formControlName="location"
+        hint="Ex: Atlanta, GA or 30303"></TextField>
+    <!-- Breed Selection -->
+    <Label row="3" colSpan="2" class="form-label"
+        text="Breed"></Label>
+    <TextField row="4" colSpan="2" (tap)="openBreedSelection()"
+        formControlName="breed"
+        [hint]="breedHintText"></TextField>
+    <Button row="4" colSpan="2" class="btn-breed" (tap)="openBreedSelection()"
+        lnr="chevron-down"></Button>
+</GridLayout>

@@ -1,8 +1,8 @@
 <GridLayout [row]="row" columns="*, *, *, *" class="navbar" alignItems="center" justifyContent="space-between">
     <petfinder-navbar-item icon="paw" [link]="['/home']"></petfinder-navbar-item>
-    <petfinder-navbar-item icon="heart" [link]="['/matches']" col="1">
-        <petfinder-notification-bubble></petfinder-notification-bubble>
+    <petfinder-navbar-item icon="heart-pulse" [link]="['/matches']" col="1">
+        <petfinder-notification-bubble [count]="matchCount$ | async"></petfinder-notification-bubble>
     </petfinder-navbar-item>
-    <petfinder-navbar-item icon="star" [link]="['/settings']" col="2"></petfinder-navbar-item>
+    <petfinder-navbar-item icon="magnifier" [link]="['/search']" col="2"></petfinder-navbar-item>
     <petfinder-navbar-item icon="user" [link]="['/profile']" col="3"></petfinder-navbar-item>
 </GridLayout>

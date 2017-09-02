@@ -1,0 +1,42 @@
+@import '../../../css/typography';
+
+.action-bar {
+    background-color: #7332D6;
+    color: #fff;
+    width: 100%;
+    .title {
+        @extend .bold;
+        text-align: center;
+    }
+}
+
+SearchBar {
+    padding: 10 0;
+    width: 100%;
+}
+
+.list {
+    &-group {
+        background-color: #eee;
+        height: 40;
+        padding: 0 10;
+
+    }
+    &-item {
+        border-bottom-width: 1;
+        border-bottom-color: #eee;
+        padding: 0 10;
+        height: 40;
+    }
+}
+
+.placeholder {
+    vertical-align: center;
+    text-align: center;
+    font-size: 22;
+    color: #7332D6;
+    @extend .normal;
+    &.icon {
+        margin-bottom: 60;
+    }
+}

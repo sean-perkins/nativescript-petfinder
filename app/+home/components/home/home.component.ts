@@ -25,7 +25,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         this.pets$ = this.store$.let(getPets);
-        this.store$.dispatch(new petActions.RandomAction(49002));
+        this.pets$
+            .take(1)
+            .subscribe(pets => {
+                if (!pets || pets.length < 1) {
+                    this.store$.dispatch(new petActions.RandomAction(49002));
+                }
+            });
     }
 
     ngAfterViewInit() {

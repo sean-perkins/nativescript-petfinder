@@ -1,3 +1,4 @@
+@import '../../../css/typography';
 
 .container {
     background-color: white;
@@ -24,20 +25,34 @@
     opacity: .3;
 }
 
+.overlay-style {
+    color: #fff;
+    padding-left: 20;
+    vertical-align: bottom;
+}
+
 .pet {
     &-name {
-        color: #fff;
+        @extend .thin;
+        @extend .overlay-style;
         font-size: 40;
-        padding-left: 20;
-        vertical-align: bottom;
-        margin-bottom: 70;
+        margin-bottom: 90;
     }
     &-spec {
-        vertical-align: bottom;
-        color: #fff;
+        @extend .overlay-style;
+        @extend .normal;
         font-size: 18;
+        margin-bottom: 65;
+    }
+    &-location {
+        @extend .overlay-style;
+        @extend .normal;
         margin-bottom: 40;
-        padding-left: 20;
+    }
+    &-description {
+        @extend .normal;
+        color: #444D54;
+        font-size: 15;
     }
     &-status {
         vertical-align: bottom;
@@ -58,4 +73,37 @@
             margin-bottom: 15;
         }
     }
+}
+
+.info {
+    &-header {
+        color: #7332D6;
+        font-size: 14;
+        @extend .semi-bold;
+        padding: 10 0;
+        margin-top:10;
+    }
+    &-container {
+        font-size: 14;
+        .right {
+            @extend .thin;
+            text-align: right;
+            color: #6E6C77;
+        }
+        .left {
+            @extend .normal;
+            text-align: left;
+            margin-left: 20;
+        }
+    }
+}
+
+.btn {
+    background-color: #7332D6;
+    color: #fff;
+    @extend .black;
+    border-radius: 5;
+    margin-top: 20;
+    padding: 10 0;
+
 }
