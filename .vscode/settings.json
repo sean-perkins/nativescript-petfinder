@@ -1,20 +1,24 @@
 {
-    "files.watcherExclude": {
-        "hooks/*/**": true,
-        "node_modules/*/**": true,
-        "platforms/*/**": true
-    },
-    "search.exclude": {
-        "platforms": true,
-        "node_modules": true,
-        "hooks": true
-    },
-    "[typescript]": {
-        "editor.formatOnSave": true
+    "files.exclude": {
+        "**.*.js": {
+            "when": "$(basename).ts"
+        },
+        "**.*.css": {
+            "when": "$(basename).scss"
+        }
     },
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
     "editor.trimAutoWhitespace": true,
     "editor.formatOnPaste": true,
-    "autoimport.filesToScan": "app/*.{ts,tsx}"
+    "[typescript]": {
+        "editor.formatOnSave": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/hooks": true,
+        "platforms/**": true
+    },
+    "tslint.autoFixOnSave": true,
 }

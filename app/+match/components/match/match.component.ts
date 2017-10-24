@@ -9,7 +9,7 @@ import { default as matchActions } from '../../../store/actions/match.actions';
 import * as dialogs from 'tns-core-modules/ui/dialogs';
 import { SavedPet } from '../../../common/models/SavedPet';
 import { Observable } from 'rxjs/Observable';
-import { ListViewEventData, RadListView } from 'nativescript-telerik-ui/listview';
+import { ListViewEventData, RadListView } from 'nativescript-pro-ui/listview';
 import { Actions } from '@ngrx/effects';
 
 @Component({
