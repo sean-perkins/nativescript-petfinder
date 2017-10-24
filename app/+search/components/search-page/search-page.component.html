@@ -31,7 +31,6 @@
     <SegmentedBar [items]="ageSegmentedItems"
         row="7"
         colSpan="2"
-        selectedIndex="0"
         (selectedIndexChange)="onAgeSegmentedItemChange($event)"></SegmentedBar>
     <!-- Gender Section -->
     <Label row="8" colSpan="2" class="form-label"
@@ -39,7 +38,6 @@
     <SegmentedBar [items]="genderSegmentedItems"
         row="9"
         colSpan="2"
-        selectedIndex="0"
         (selectedIndexChange)="onGenderSegmentedItemChange($event)"></SegmentedBar>
     <!-- Gender Section -->
     <Label row="10" colSpan="2" class="form-label"
@@ -47,7 +45,6 @@
     <SegmentedBar [items]="sizeSegmentedItems"
         row="11"
         colSpan="2"
-        selectedIndex="0"
         (selectedIndexChange)="onSizeSegmentedItemChange($event)"></SegmentedBar>
     <!-- Button -->
     <Button class="btn-primary btn-search" row="12"

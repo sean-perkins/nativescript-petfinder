@@ -1,0 +1,6 @@
+<WebImage *ngIf="pet.hasImage" class="pet-image" stretch="aspectFill"
+    [src]="pet.photos[0]"></WebImage>
+<Label *ngIf="!pet.hasImage" class="pet-image thumbnail"
+    text="No Image"></Label>
+<Label class="pet-name" [row]="0"
+    [text]="pet.name"></Label>

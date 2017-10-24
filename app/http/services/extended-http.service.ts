@@ -19,6 +19,7 @@ export class ExtendedHttpService extends Http {
     request(request: Request, options?: RequestOptionsArgs): Observable<Response> {
         if (request.url.indexOf('api.petfinder') !== -1) {
             request.url = `${request.url.toString()}&key=${PetFinder.API_KEY}&secret=${PetFinder.API_SECRET}&format=json`;
+            console.log(request.url);
         }
         return super
             .request(request, options)

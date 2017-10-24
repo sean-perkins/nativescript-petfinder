@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Store } from '@ngrx/store';
-import { IAppState, getPets } from '../../../store/app.state';
+import { IAppState, getRandomPet } from '../../../store/app.state';
 
 import { default as petActions } from '../../../store/actions/pet.actions';
 import { default as matchActions } from '../../../store/actions/match.actions';
@@ -15,26 +15,23 @@ import { PetImagePreviewComponent } from '../../../pet/components/pet-image-prev
     moduleId: module.id,
     templateUrl: './home.component.html',
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
 
-    pets$: Observable<Pet[]>;
+    pet$: Observable<Pet>;
 
     @ViewChild(PetImagePreviewComponent) imagePreview: PetImagePreviewComponent;
 
     constructor(private store$: Store<IAppState>) { }
 
     ngOnInit() {
-        this.pets$ = this.store$.let(getPets);
-        this.pets$
+        this.pet$ = this.store$.let(getRandomPet);
+        this.pet$
             .take(1)
-            .subscribe(pets => {
-                if (!pets || pets.length < 1) {
+            .subscribe(pet => {
+                if (!pet) {
                     this.store$.dispatch(new petActions.RandomAction(49002));
                 }
             });
-    }
-
-    ngAfterViewInit() {
     }
 
     likePet(pet: Pet): void {

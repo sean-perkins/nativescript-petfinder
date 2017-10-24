@@ -2,11 +2,16 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { SegmentedBar, SegmentedBarItem, SelectedIndexChangedEventData } from 'ui/segmented-bar';
 import * as geolocation from 'nativescript-geolocation';
 import { Accuracy } from 'tns-core-modules/ui/enums';
+import { Router } from '@angular/router';
+import { PetSearch } from '../../../common/models/PetSearch';
 import { GeolocationService } from '../../../geolocation/services/geolocation.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalDialogService } from 'nativescript-angular/modal-dialog';
 import { BreedDialogComponent } from '../../../pet/components/breed-dialog/breed-dialog.component';
 import * as dialogs from 'tns-core-modules/ui/dialogs';
+import { Store } from '@ngrx/store';
+import { IAppState } from '../../../store/app.state';
+import { default as petActions } from '../../../store/actions/pet.actions';
 
 @Component({
     selector: 'petfinder-search-page',
@@ -25,6 +30,10 @@ export class SearchPageComponent implements OnInit {
 
     submitted = false;
 
+    ageSegmentInit = false;
+    sizeSegmentInit = false;
+    genderSegmentInit = false;
+
     private segmentedTitles = ['Dogs', 'Cats', 'Other'];
     private ageTitles = ['Baby', 'Young', 'Adult', 'Senior'];
     private genderTitles = ['Male', 'Female'];
@@ -32,8 +41,10 @@ export class SearchPageComponent implements OnInit {
 
     constructor(
         private vcRef: ViewContainerRef,
+        private store$: Store<IAppState>,
         private fb: FormBuilder,
         private geolocationService: GeolocationService,
+        private router: Router,
         private modalService: ModalDialogService) { }
 
     ngOnInit() {
@@ -52,23 +63,46 @@ export class SearchPageComponent implements OnInit {
 
     onAgeSegmentedItemChange(args: SelectedIndexChangedEventData) {
         const segmentedBar = <SegmentedBar>args.object;
+        if (!this.ageSegmentInit) {
+            this.ageSegmentInit = true;
+            return;
+        }
         this.form.get('age').setValue(this.ageTitles[segmentedBar.selectedIndex]);
     }
 
     onSizeSegmentedItemChange(args: SelectedIndexChangedEventData) {
         const segmentedBar = <SegmentedBar>args.object;
+        if (!this.sizeSegmentInit) {
+            this.sizeSegmentInit = true;
+            return;
+        }
         this.form.get('size').setValue(this.sizeTitles[segmentedBar.selectedIndex]);
     }
 
     onGenderSegmentedItemChange(args: SelectedIndexChangedEventData) {
         const segmentedBar = <SegmentedBar>args.object;
+        if (!this.genderSegmentInit) {
+            this.genderSegmentInit = true;
+            return;
+        }
         this.form.get('gender').setValue(this.genderTitles[segmentedBar.selectedIndex]);
     }
 
     search(): void {
         this.submitted = true;
         if (this.form.valid) {
-            console.log('valid form!');
+            const value = this.form.value;
+            const preferences = new PetSearch(<any>{
+                breed: this.sanitizeBreed(value.breed),
+                size: value.size ? value.size.substr(0, 1) : null,
+                sex: value.gender ? value.gender.substr(0, 1) : null,
+                animal: <any>this.getAnimal(value.animalType),
+                location: value.location,
+                offset: 0,
+                count: 10
+            });
+            this.store$.dispatch(new petActions.SearchAction(preferences));
+            this.router.navigate(['/search/grid']);
         }
         else {
             dialogs.alert({
@@ -128,6 +162,25 @@ export class SearchPageComponent implements OnInit {
         else {
             return this.animalTypeText;
         }
+    }
+
+    private sanitizeBreed(breed: string) {
+        if (breed === 'All Dogs' || breed === 'All Cats' || breed == 'All Other') {
+            return null;
+        }
+        return breed;
+    }
+
+    private getAnimal(index: number): string {
+        switch (this.segmentedTitles[index]) {
+            case 'Dogs':
+                return 'dog';
+            case 'Cats':
+                return 'cat';
+            case 'Other':
+                return 'barnyard';
+        }
+        return null;
     }
 
     private get animalTypeText(): string {

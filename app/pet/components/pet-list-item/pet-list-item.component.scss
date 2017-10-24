@@ -1,0 +1,23 @@
+@import '../../../css/typography';
+
+.pet {
+    &-image {
+        width: 100%;
+        height: 100%;
+        &.thumbnail {
+            border-width: 1;
+            border-color: #fff;
+            text-align: center;
+            @extend .normal;
+
+        }
+    }
+    &-name {
+        @extend .bold;
+        vertical-align: bottom;
+        margin-bottom: 10;
+        font-size: 18;
+        color: #fff;
+        padding-left: 10;
+    }
+}

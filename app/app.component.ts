@@ -5,7 +5,7 @@ import './operators';
 
 import { Store } from '@ngrx/store';
 import { IAppState } from './store/app.state';
-
+import { initializeOnAngular } from 'nativescript-web-image-cache';
 import { default as shelterActions } from './store/actions/shelter.actions';
 @Component({
     selector: 'ns-app',
@@ -21,6 +21,7 @@ export class AppComponent {
         page.statusBarStyle = 'dark';
         page.actionBarHidden = true;
         page.backgroundColor = new Color('#7332D6');
+        initializeOnAngular();
     }
 
     ngOnInit(): void {

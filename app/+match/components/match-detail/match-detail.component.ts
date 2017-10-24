@@ -81,7 +81,6 @@ export class MatchDetailComponent implements OnInit, AfterContentInit, AfterView
     }
 
     inquire(pet: SavedPet): void {
-        console.log('inquire!');
         const actions = [];
         const contact = pet.contact;
         if (contact.phone) {
@@ -152,9 +151,7 @@ export class MatchDetailComponent implements OnInit, AfterContentInit, AfterView
                             body: '',
                             to: [contact.email],
 
-                        }).then(() => {
-                            console.log('finished?');
-                        }, () => {
+                        }).then(() => { }, () => {
                             dialogs.alert({
                                 title: 'Error',
                                 message: 'There was an issue sending the email.',
@@ -169,7 +166,7 @@ export class MatchDetailComponent implements OnInit, AfterContentInit, AfterView
                         });
                     });
                 }
-                else {
+                else if (selectedAction.startsWith('Call')) {
                     const formattedPhone = contact.phone.replace(/ /g, '').replace(/["'()]/g, '').replace(/-/g, '');
                     phone.dial(formattedPhone, true);
                 }

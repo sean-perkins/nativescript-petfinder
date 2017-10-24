@@ -17,6 +17,7 @@ export class PetImagePreviewComponent implements AfterViewInit {
     @ViewChild('carousel') carousel: ElementRef;
 
     ngAfterViewInit() {
+        // Only create the carousel if the pet has images
         if (this.pet.hasImage) {
             this.buildCarousel();
         }

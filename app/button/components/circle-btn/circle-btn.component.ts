@@ -17,7 +17,6 @@ export class CircleButtonComponent {
     @Output() onTap: EventEmitter<boolean> = new EventEmitter();
 
     tapped(): void {
-        console.log('tapped');
         this.onTap.emit(true);
     }
 

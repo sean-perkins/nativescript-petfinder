@@ -1,0 +1,16 @@
+<GridLayout class="page" rows="*">
+    <RadListView
+        loadOnDemandMode="Auto"
+        loadOnDemandBufferSize="10"
+        width="100%"
+        height="100%"
+        (loadMoreDataRequested)="onPageRequest($event)"
+        [items]="pets$ | async">
+        <ng-template let-pet="item">
+            <GridLayout class="pet-grid-item" rows="*">
+                <petfinder-pet-list-item [pet]="pet"></petfinder-pet-list-item>
+            </GridLayout>
+        </ng-template>
+        <ListViewGridLayout tkListViewLayout itemHeight="200" scrollDirection="Vertical" spanCount="2"></ListViewGridLayout>
+    </RadListView>
+</GridLayout>

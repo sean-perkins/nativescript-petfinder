@@ -5,20 +5,26 @@ import { SearchPageComponent } from './components/search-page/search-page.compon
 import { GeolocationModule } from '../geolocation/geolocation.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NativeScriptFormsModule } from 'nativescript-angular';
+import { NativeScriptUIListViewModule } from 'nativescript-telerik-ui/listview/angular';
 import { PetModule } from '../pet/pet.module';
+import { SearchGridComponent } from './components/search-grid/search-grid.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     imports: [
         SearchRoutingModule,
+        CommonModule,
         NSLinearIconsModule,
         GeolocationModule,
         NativeScriptFormsModule,
         FormsModule,
         ReactiveFormsModule,
+        NativeScriptUIListViewModule,
         PetModule
     ],
     declarations: [
-        SearchPageComponent
+        SearchPageComponent,
+        SearchGridComponent
     ],
     exports: [
         SearchPageComponent
